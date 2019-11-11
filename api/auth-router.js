@@ -7,6 +7,8 @@ const api = require('./api-model');
 
 // /user/auth/
 
+//login
+
 router.post('/login', (req, res) => {
     let {username, password} = req.headers;
 
@@ -23,6 +25,9 @@ router.post('/login', (req, res) => {
         res.status(500).json(err); 
     });
 });
+
+
+//signup 
 
 router.post('/register', (req, res) => {
    let user = req.body;
