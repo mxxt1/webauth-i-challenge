@@ -16,12 +16,12 @@ router.use('/auth', authRouter);
 router.get('/', requireAuth, (req,res) => {
     let {username, password} = req.headers;
     console.log(username);
-    api.findBy(username)
+    api.findBy({username})
     .then(users => {
         res.status(200).json(users);
     })
-    .catch(() => {
-        res.status(401).json({error: `failed to retrieve users, make sure you are logged in`});
+    .catch((error) => {
+        res.status(401).json({error: `failed to retrieve users, make sure you are logged in: ${error}`});
     });
 });
 
