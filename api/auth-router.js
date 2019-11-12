@@ -21,8 +21,8 @@ router.post('/login', (req, res) => {
             res.status(401).json({error: `${user.username} not found`});
         }
     })
-    .catch(err => {
-        res.status(500).json(err); 
+    .catch(() => {
+        res.status(401).json({error: `User not found`});
     });
 });
 
