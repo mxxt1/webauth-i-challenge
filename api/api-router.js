@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const requireAuth = require('../middleware/requireAuth.js');
+const restricted = require('../middleware/restrictedMW.js');
 
 //model
 const api = require('./api-model');
@@ -13,7 +14,7 @@ router.use('/auth', authRouter);
 
 //get all users if current user is auth'd
 
-router.get('/all', requireAuth, (req,res) => {
+router.get('/all', restricted, (req,res) => {
     
     api.getAll()
     .then(users => {
@@ -29,7 +30,7 @@ router.get('/all', requireAuth, (req,res) => {
 
 //get users own data if auth'd
 
-router.get('/', requireAuth, (req,res) => {
+router.get('/', restricted, (req,res) => {
     let {username} = req.headers;
     console.log(username);
     api.findBy({username})

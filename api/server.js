@@ -1,8 +1,14 @@
 const express = require('express');
+const session = require('express-session');
+const KnexSS = require('connect-session-knex');
+
+const apiRouter = require('./api-router');
+const knexConnection = require("../database/dbConfig.js");
+
 
 const mainMW = require('../middleware/mainMW');
 
-const apiRouter = require('./api-router');
+
 
 const server = express();
 
