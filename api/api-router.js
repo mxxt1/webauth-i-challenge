@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const bcrypt = require('bcryptjs');
-const requireAuth = require('../middleware/requireAuth.js');
+// const requireAuth = require('../middleware/requireAuth.js');
 const restricted = require('../middleware/restrictedMW.js');
 
 //model
@@ -26,12 +25,10 @@ router.get('/all', restricted, (req,res) => {
 });
 
 
-
-
 //get users own data if auth'd
 
 router.get('/', restricted, (req,res) => {
-    let {username} = req.headers;
+    let {username} = req.session;
     console.log(username);
     api.findBy({username})
     .then(users => {

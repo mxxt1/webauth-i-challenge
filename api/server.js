@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const KnexSS = require('connect-session-knex');
+const KnexSS = require('connect-session-knex')(session);
 
 const apiRouter = require('./api-router');
 const knexConnection = require("../database/dbConfig.js");
@@ -11,7 +11,7 @@ const mainMW = require('../middleware/mainMW');
 const server = express();
 
 const sessionConfiguration = {
-    name: 'notsession',
+    name: 'session',
     secret: process.env.COOKIE_SECRET,
     cookie: {
         maxAge: 1000*60*24,
